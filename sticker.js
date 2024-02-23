@@ -18,7 +18,6 @@ async function open_assistant() {
     });
     socket.ev.on("messages.upsert", async ({ messages }) => {
         console.log(JSON.stringify(messages[0], null, 2));
-        if (messages[0].key.fromMe) return;
         let message = messages[0];
         if (message.message?.extendedTextMessage?.text == "#s" && message.message?.extendedTextMessage?.contextInfo?.quotedMessage) {
             message.message = message.message.extendedTextMessage.contextInfo.quotedMessage;
@@ -30,7 +29,6 @@ async function open_assistant() {
             return;
         }
         if (message.message.imageMessage) {
-            console.log("image");
             const outPutFilePath = message.key.id + "output.jpg";
             // download the message
             const buffer = await downloadMediaMessage(message);
