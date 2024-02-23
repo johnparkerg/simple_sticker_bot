@@ -1,7 +1,7 @@
 const { default: makeWASocket, useMultiFileAuthState, downloadMediaMessage } = require('@whiskeysockets/baileys')
 const sharp = require('sharp');
 const { writeFile, unlink } = require('fs/promises');
-const { Sticker } = require('wa-sticker-formatter');
+const { Sticker } = require('wa-sticker-formatter')
 
 async function open_assistant() {
 
@@ -17,8 +17,6 @@ async function open_assistant() {
         }
     });
     socket.ev.on("messages.upsert", async ({ messages }) => {
-
-
         console.log(JSON.stringify(messages[0], null, 2));
         if (messages[0].key.fromMe) return;
         let message = messages[0];
@@ -31,16 +29,8 @@ async function open_assistant() {
         else {
             return;
         }
-        const key = {
-            remoteJid: message.key.remoteJid,
-            id: message.id, // id of the message you want to read
-            participant: undefined, // the ID of the user that sent the  message (undefined for individual chats)
-        };
-        // pass to readMessages function
-        // can pass multiple keys to read multiple messages as well
-        const messagex = await sock.readMessages([key]);
-        console.log(messagex);
         if (message.message.imageMessage) {
+            console.log("image");
             const outPutFilePath = message.key.id + "output.jpg";
             // download the message
             const buffer = await downloadMediaMessage(message);
