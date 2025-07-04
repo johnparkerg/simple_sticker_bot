@@ -6,7 +6,10 @@ This project is a simple yet powerful Node.js-based sticker bot for WhatsApp, le
 
 ## Features
 
-- **Automatic Sticker Conversion**: Converts images and videos sent with a specific trigger message (`#s`) into stickers.
+- **Automatic Sticker Conversion**:
+    - Converts images sent with the `#s` trigger into static WebP stickers.
+    - Converts videos sent with the `#s` trigger into animated WebP stickers (first 3 seconds, 10 FPS).
+    - If animated sticker creation fails for a video, a static sticker from the video will be sent as a fallback.
 - **QR Code Authentication**: Easy authentication process with WhatsApp Web using QR code scanning.
 - **Reconnection Handling**: Automatically attempts to reconnect in case of connection loss.
 - **Message Logging**: Logs incoming messages for debugging purposes.
