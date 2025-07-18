@@ -22,7 +22,7 @@ async function open_assistant() {
         if (message.message?.extendedTextMessage?.text == "#s" && message.message?.extendedTextMessage?.contextInfo?.quotedMessage) {
             message.message = message.message.extendedTextMessage.contextInfo.quotedMessage;
         }
-        else if (message.message.imageMessage?.caption == "#s") {
+        else if (message?.message?.imageMessage?.caption == "#s") {
             //
         }
         else {
